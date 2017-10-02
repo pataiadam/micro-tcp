@@ -1,0 +1,27 @@
+{
+  "name": "micro-tcp",
+  "version": "0.0.1",
+  "description": "Easy, Fast, Lightweight Asynchronous TCP microservices",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pataiadam/micro-tcp.git"
+  },
+  "keywords": [
+    "micro",
+    "microservice",
+    "tcp",
+    "fast",
+    "serverless",
+    "API"
+  ],
+  "author": "Adam Patai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pataiadam/micro-tcp/issues"
+  },
+  "homepage": "https://github.com/pataiadam/micro-tcp#readme"
+}
