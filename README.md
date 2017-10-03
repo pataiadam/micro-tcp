@@ -1,7 +1,15 @@
 # micro-tcp
 Easy, Fast, Lightweight Asynchronous TCP microservices
 
-## Server
+## Installation
+
+```
+npm install micro-tcp
+```
+
+## Usage
+
+### Server
 
 ```
 const micro = require('micro-tcp');
@@ -11,7 +19,7 @@ micro.add('sayHi', async (name, res) => res('Hi ' + name + '!'));
 micro.listen({ port: 3000 });
 ```
 
-## Client
+### Client
 
 ```
 const micro = require('micro-tcp');

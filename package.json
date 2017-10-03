@@ -1,6 +1,6 @@
 {
   "name": "micro-tcp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Easy, Fast, Lightweight Asynchronous TCP microservices",
   "main": "./lib/index.js",
   "scripts": {
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/pataiadam/micro-tcp/issues"
   },
-  "homepage": "https://github.com/pataiadam/micro-tcp#readme"
+  "homepage": "https://github.com/pataiadam/micro-tcp#readme",
+  "engines": {
+    "node": ">=8"
+  }
 }
