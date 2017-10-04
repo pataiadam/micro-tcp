@@ -1,12 +1,15 @@
 const { expect } = require('chai');
 const Micro = require('../lib');
-
 const micro = new Micro();
 
 let client = null;
 
 before(function(done) {
-  micro.add('sayHi', async (name, res) => res('Hi ' + name + '!'));
+  const mw = (name, next) => {
+    if(!name) return next(new Error('Name is empty'));
+    next();
+  };
+  micro.add('sayHi', mw, async (name, res) => res('Hi ' + name + '!'));
   micro.listen({ port: 56127 }, () => {
     micro.createClient({ port: 56127 }, (c) => {
       client = c;
@@ -21,15 +24,14 @@ describe('Basic test', () => {
     expect(result).to.equal('Hi Alice!');
   });
 
-  it('should return a greeting message', async function() {
-    this.timeout(10000);
-    const start = new Date().getTime();
-    const a = [];
-    for (let i=0; i<100000;i++){
-      a.push(client.sayHi('Alice'));
-    }
-    await Promise.all(a)
-    console.log(1000 * 200000 / (new Date().getTime() - start));
+  it('should return an error message', async function() {
+    await client.sayHi('').catch((err)=>{
+      expect(err).to.equal('Name is empty');
+    });
   });
+});
 
+after((done)=>{
+  client.$end();
+  done()
 });
