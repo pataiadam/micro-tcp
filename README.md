@@ -12,7 +12,8 @@ npm install micro-tcp
 ### Server
 
 ```
-const micro = require('micro-tcp');
+const Micro = require('micro-tcp');
+const micro = new Micro();
 
 micro.add('sayHi', async (name, res) => res('Hi ' + name + '!'));
 
@@ -22,7 +23,8 @@ micro.listen({ port: 3000 });
 ### Client
 
 ```
-const micro = require('micro-tcp');
+const Micro = require('micro-tcp');
+const micro = new Micro();
 
 micro.createClient({ port: 3000 }, (client) => {
   client.sayHi('Alice', (result) => {
@@ -34,7 +36,8 @@ micro.createClient({ port: 3000 }, (client) => {
 Or with async/await:
 
 ```
-const micro = require('micro-tcp');
+const Micro = require('micro-tcp');
+const micro = new Micro();
 
 async function run() {
   const client = await micro.createClient({ port: 3000 });
