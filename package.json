@@ -4,7 +4,7 @@
   "description": "Easy, Fast, Lightweight Asynchronous TCP microservices",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha -R spec --recursive"
+    "test": "mocha -R spec --recursive --exit"
   },
   "repository": {
     "type": "git",
