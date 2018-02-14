@@ -4,28 +4,23 @@ const micro = new Micro();
 
 let client = null;
 
-before(function(done) {
-  const mw = (name, next) => {
-    if(!name) return next(new Error('Name is empty'));
-    next();
+before(async () => {
+  const mw = (name) => {
+    if(!name) return new Error('Name is empty');
   };
-  micro.add('sayHi', mw, async (name, res) => res('Hi ' + name + '!'));
-  micro.listen({ port: 56127 }, () => {
-    micro.createClient({ port: 56127 }, (c) => {
-      client = c;
-      done();
-    })
-  })
+  micro.add('say.hi', mw, async (name) => 'Hi ' + name + '!');
+  await micro.listen({ port: 56127 });
+  client = await micro.createClient({ port: 56127 });
 });
 
 describe('Basic test', () => {
   it('should return a greeting message', async function() {
-    const result = await client.sayHi('Alice');
+    const result = await client.say.hi('Alice');
     expect(result).to.equal('Hi Alice!');
   });
 
   it('should return an error message', async function() {
-    await client.sayHi('').catch((err)=>{
+    await client.say.hi('').catch((err)=>{
       expect(err).to.equal('Name is empty');
     });
   });
